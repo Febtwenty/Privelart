@@ -1,0 +1,11 @@
+### GET all artists
+GET http://localhost:3001/api/artists
+
+### Add a new artist
+POST http://localhost:3001/api/artists/
+Content-Type: application/json
+
+{
+    "name": "Sung Tieu",
+    "inCollection": false
+}
