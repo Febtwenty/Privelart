@@ -1,9 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import artistService from './services/artists'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
   const [newArtist, setNewArtist] = useState('')
+  const [artists, setArtists] = useState([])
+
+  const hook = () => {
+    artistService
+      .getAll()
+      .then(r => setArtists(r))
+  }
+  useEffect(hook, [])
+
+  console.log(artists)
 
   return (
     <>
@@ -16,6 +27,14 @@ function App() {
           Google {newArtist}
         </a>
       </div>
+      <h2>Artist Database</h2>
+      <ul>
+        {artists.map(artist => 
+          <li key={artist.id}>
+            {artist.name}
+          </li>
+        )}
+      </ul>
       <p className="read-the-docs">
         &#169; by Clemens Leopold
       </p>
